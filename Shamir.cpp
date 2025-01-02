@@ -9,14 +9,10 @@
 #include <stdexcept>
 
 using namespace std;
-
-// Utility function to convert a number from any base to decimal
 long long convertFromBase(const string& num, int base) {
     long long result = 0;
     string digits = "0123456789abcdefghijklmnopqrstuvwxyz";
     string lowerNum = num;
-
-    // Convert to lowercase
     transform(lowerNum.begin(), lowerNum.end(), lowerNum.begin(), ::tolower);
 
     for (char c : lowerNum) {
@@ -26,7 +22,7 @@ long long convertFromBase(const string& num, int base) {
     return result;
 }
 
-// Function to create the Vandermonde matrix
+
 vector<vector<long long>> createVandermondeMatrix(const vector<pair<long long, long long>>& points, int k) {
     vector<vector<long long>> matrix(k, vector<long long>(k));
 
@@ -40,16 +36,16 @@ vector<vector<long long>> createVandermondeMatrix(const vector<pair<long long, l
     return matrix;
 }
 
-// Function to perform Gaussian elimination
+
 vector<long long> gaussianElimination(vector<vector<long long>>& matrix, vector<long long>& values) {
     int n = matrix.size();
 
-    // Augmented matrix
+   
     for (int i = 0; i < n; i++) {
         matrix[i].push_back(values[i]);
     }
 
-    // Forward elimination
+    
     for (int i = 0; i < n; i++) {
         int maxRow = i;
         for (int j = i + 1; j < n; j++) {
@@ -67,7 +63,7 @@ vector<long long> gaussianElimination(vector<vector<long long>>& matrix, vector<
         }
     }
 
-    // Back substitution
+   
     vector<long long> solution(n, 0);
     for (int i = n - 1; i >= 0; i--) {
         long long sum = 0;
@@ -80,7 +76,7 @@ vector<long long> gaussianElimination(vector<vector<long long>>& matrix, vector<
     return solution;
 }
 
-// Main function to solve for the secret
+
 long long findSecret(const map<string, map<string, string>>& testCase) {
     int n = stoi(testCase.at("keys").at("n"));
     int k = stoi(testCase.at("keys").at("k"));
